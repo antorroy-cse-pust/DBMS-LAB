@@ -1,0 +1,10 @@
+DELIMITER $$
+CREATE TRIGGER check_salary
+BEFORE INSERT ON instructor
+FOR EACH ROW
+BEGIN
+    IF NEW.salary > 150000 THEN
+        SET NEW.salary = 150000;
+    END IF;
+END $$
+DELIMITER ;

@@ -1,0 +1,1 @@
+SELECT s_ID FROM advisor WHERE i_ID = '10101';

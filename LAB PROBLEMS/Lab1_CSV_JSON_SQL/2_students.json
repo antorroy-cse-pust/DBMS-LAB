@@ -1,0 +1,5 @@
+[
+  { "StudentID": "S001", "Name": "Antor Roy", "Department": "CSE", "CGPA": 3.75, "Email": "antor@example.com" },
+  { "StudentID": "S002", "Name": "Rima Akter", "Department": "CSE", "CGPA": 3.60, "Email": "rima@example.com" },
+  { "StudentID": "S003", "Name": "Karim Hossain", "Department": "EEE", "CGPA": 3.40, "Email": "karim@example.com" }
+]
