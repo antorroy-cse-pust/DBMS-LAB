@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Edit Incident{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <h1>✏️ Edit Incident</h1>
+    <a href="{{ url_for('incident_list') }}" class="btn btn-gray">← Back</a>
+</div>
+
+<div class="form-box">
+    <h2>Update Incident Details</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Incident Title</label>
+            <input type="text" name="title" value="{{ inc.title }}" required>
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" name="location" value="{{ inc.location }}" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" name="date" value="{{ inc.date }}" required>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" name="time" value="{{ inc.time }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Severity</label>
+                <select name="severity" required>
+                    <option value="Low"      {% if inc.severity == "Low"      %}selected{% endif %}>Low</option>
+                    <option value="Medium"   {% if inc.severity == "Medium"   %}selected{% endif %}>Medium</option>
+                    <option value="High"     {% if inc.severity == "High"     %}selected{% endif %}>High</option>
+                    <option value="Critical" {% if inc.severity == "Critical" %}selected{% endif %}>Critical</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status" required>
+                    <option value="Active"         {% if inc.status == "Active"         %}selected{% endif %}>Active</option>
+                    <option value="Under Control"  {% if inc.status == "Under Control"  %}selected{% endif %}>Under Control</option>
+                    <option value="Resolved"       {% if inc.status == "Resolved"       %}selected{% endif %}>Resolved</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description">{{ inc.description }}</textarea>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-green">Save Changes</button>
+            <a href="{{ url_for('incident_list') }}" class="btn btn-gray">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

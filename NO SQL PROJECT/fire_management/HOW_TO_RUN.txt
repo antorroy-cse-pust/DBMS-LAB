@@ -1,0 +1,97 @@
+============================================================
+  UNIVERSITY FIRE MANAGEMENT SYSTEM
+  Step-by-Step Guide to Run This Project
+============================================================
+
+WHAT YOU NEED TO INSTALL (only once):
+--------------------------------------
+
+STEP 1 — Install Python
+  - Go to: https://www.python.org/downloads/
+  - Download and install Python 3.10 or newer
+  - During install, CHECK the box that says "Add Python to PATH"
+
+STEP 2 — Install MongoDB
+  - Go to: https://www.mongodb.com/try/download/community
+  - Download MongoDB Community Edition
+  - Install it (keep all default options)
+  - After install, MongoDB runs automatically in the background
+
+STEP 3 — Install MongoDB Compass (optional but recommended)
+  - Go to: https://www.mongodb.com/try/download/compass
+  - This gives you a visual interface to see your database
+
+
+HOW TO RUN THE PROJECT:
+------------------------
+
+STEP 4 — Open Command Prompt (cmd) or PowerShell
+  - Press Windows key + R
+  - Type: cmd
+  - Press Enter
+
+STEP 5 — Go to the project folder
+  Type this (change the path to where you put the folder):
+    cd "C:\Users\YourName\Downloads\fire_management"
+
+STEP 6 — Install required Python packages (only once)
+  Type:
+    pip install flask pymongo bcrypt
+
+STEP 7 — Start the app
+  Type:
+    python app.py
+
+STEP 8 — Open in browser
+  Open any browser and go to:
+    http://127.0.0.1:5000
+
+STEP 9 — Register and Login
+  - Click "Register here"
+  - Fill in your name, email, password, and role
+  - Then login with that email and password
+
+
+FEATURES:
+----------
+  - Register / Login / Logout
+  - Dashboard with live statistics
+  - Fire Incidents — Add, Edit, Delete, Search, Filter
+  - Staff Management — Add, Edit, Delete, Search
+  - Equipment Management — Add, Edit, Delete, Search
+
+
+IF SOMETHING DOES NOT WORK:
+-----------------------------
+  Problem: "pip is not recognized"
+  Fix: Reinstall Python and check "Add Python to PATH"
+
+  Problem: "No module named flask"
+  Fix: Run this again:  pip install flask pymongo bcrypt
+
+  Problem: "Connection refused" or database error
+  Fix: Make sure MongoDB is running.
+       Press Windows key, search "Services",
+       find "MongoDB" and click "Start"
+
+  Problem: Port already in use
+  Fix: Change the last line in app.py from:
+         app.run(debug=True)
+       to:
+         app.run(debug=True, port=5001)
+       Then open: http://127.0.0.1:5001
+
+
+TO STOP THE APP:
+-----------------
+  Press Ctrl + C in the command prompt
+
+
+HOW TO CHANGE THINGS:
+----------------------
+  - To change the app name: open base.html, find "University Fire Management System"
+  - To add a new field to incidents: edit app.py (add_incident route) and add_incident.html
+  - To change colors: open static/css/style.css, find #c0392b (that is the red color)
+  - Database name: open app.py, find "fire_management_db" and change it
+
+============================================================

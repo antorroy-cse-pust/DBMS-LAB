@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Add Equipment{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <h1>🧯 Add Equipment</h1>
+    <a href="{{ url_for('equipment_list') }}" class="btn btn-gray">← Back</a>
+</div>
+
+<div class="form-box">
+    <h2>Equipment Details</h2>
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Equipment Name</label>
+                <input type="text" name="name" placeholder="e.g. Fire Extinguisher" required>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" name="type" placeholder="e.g. CO2, Foam, Dry Powder" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" name="quantity" placeholder="Number of units" min="1" required>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" name="location" placeholder="e.g. Building A, Floor 2" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Condition</label>
+                <select name="condition" required>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Poor">Poor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Last Checked Date</label>
+                <input type="date" name="last_checked" required>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-red">Add Equipment</button>
+            <a href="{{ url_for('equipment_list') }}" class="btn btn-gray">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

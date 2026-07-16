@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Edit Staff{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <h1>✏️ Edit Staff Member</h1>
+    <a href="{{ url_for('staff_list') }}" class="btn btn-gray">← Back</a>
+</div>
+
+<div class="form-box">
+    <h2>Update Staff Details</h2>
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" value="{{ member.name }}" required>
+            </div>
+            <div class="form-group">
+                <label>ID Number</label>
+                <input type="text" name="id_number" value="{{ member.id_number }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Department</label>
+                <input type="text" name="department" value="{{ member.department }}" required>
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                <input type="text" name="position" value="{{ member.position }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" value="{{ member.phone }}" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="{{ member.email }}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status" required>
+                <option value="Active"   {% if member.status == "Active"   %}selected{% endif %}>Active</option>
+                <option value="Inactive" {% if member.status == "Inactive" %}selected{% endif %}>Inactive</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-green">Save Changes</button>
+            <a href="{{ url_for('staff_list') }}" class="btn btn-gray">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

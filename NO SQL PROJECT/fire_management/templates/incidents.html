@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Incidents{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <h1>🔥 Fire Incidents</h1>
+    <a href="{{ url_for('add_incident') }}" class="btn btn-red">+ Report Incident</a>
+</div>
+
+<form class="search-bar" method="GET">
+    <input type="text" name="search" placeholder="Search by title or location..." value="{{ search }}">
+    <select name="severity">
+        <option value="">All Severities</option>
+        <option value="Critical" {% if severity=='Critical' %}selected{% endif %}>Critical</option>
+        <option value="High"     {% if severity=='High'     %}selected{% endif %}>High</option>
+        <option value="Medium"   {% if severity=='Medium'   %}selected{% endif %}>Medium</option>
+        <option value="Low"      {% if severity=='Low'      %}selected{% endif %}>Low</option>
+    </select>
+    <select name="status">
+        <option value="">All Status</option>
+        <option value="Active"      {% if status=='Active'      %}selected{% endif %}>Active</option>
+        <option value="Under Control" {% if status=='Under Control' %}selected{% endif %}>Under Control</option>
+        <option value="Resolved"    {% if status=='Resolved'    %}selected{% endif %}>Resolved</option>
+    </select>
+    <button type="submit" class="btn btn-blue">Search</button>
+    <a href="{{ url_for('incident_list') }}" class="btn btn-gray">Clear</a>
+</form>
+
+<div class="table-box">
+    {% if incidents %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Date & Time</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Reported By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inc in incidents %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><strong>{{ inc.title }}</strong></td>
+                <td>{{ inc.location }}</td>
+                <td>{{ inc.date }} {{ inc.time }}</td>
+                <td>
+                    {% if inc.severity == "Critical" %}
+                        <span class="badge badge-red">Critical</span>
+                    {% elif inc.severity == "High" %}
+                        <span class="badge badge-orange">High</span>
+                    {% elif inc.severity == "Medium" %}
+                        <span class="badge badge-blue">Medium</span>
+                    {% else %}
+                        <span class="badge badge-gray">Low</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if inc.status == "Active" %}
+                        <span class="badge badge-red">Active</span>
+                    {% elif inc.status == "Resolved" %}
+                        <span class="badge badge-green">Resolved</span>
+                    {% else %}
+                        <span class="badge badge-orange">{{ inc.status }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ inc.reported_by }}</td>
+                <td>
+                    <div class="actions">
+                        <a href="{{ url_for('edit_incident', id=inc._id) }}" class="btn btn-blue btn-sm">Edit</a>
+                        <a href="{{ url_for('delete_incident', id=inc._id) }}"
+                           class="btn btn-red btn-sm"
+                           onclick="return confirm('Delete this incident?')">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No incidents found. <a href="{{ url_for('add_incident') }}">Report one now.</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}

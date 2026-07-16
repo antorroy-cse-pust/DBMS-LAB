@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Staff{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <h1>👨‍🚒 Fire Staff</h1>
+    <a href="{{ url_for('add_staff') }}" class="btn btn-red">+ Add Staff</a>
+</div>
+
+<form class="search-bar" method="GET">
+    <input type="text" name="search" placeholder="Search by name or department..." value="{{ search }}">
+    <button type="submit" class="btn btn-blue">Search</button>
+    <a href="{{ url_for('staff_list') }}" class="btn btn-gray">Clear</a>
+</form>
+
+<div class="table-box">
+    {% if staff %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>ID Number</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in staff %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><strong>{{ member.name }}</strong></td>
+                <td>{{ member.id_number }}</td>
+                <td>{{ member.department }}</td>
+                <td>{{ member.position }}</td>
+                <td>{{ member.phone }}</td>
+                <td>{{ member.email }}</td>
+                <td>
+                    {% if member.status == "Active" %}
+                        <span class="badge badge-green">Active</span>
+                    {% else %}
+                        <span class="badge badge-gray">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="actions">
+                        <a href="{{ url_for('edit_staff', id=member._id) }}" class="btn btn-blue btn-sm">Edit</a>
+                        <a href="{{ url_for('delete_staff', id=member._id) }}"
+                           class="btn btn-red btn-sm"
+                           onclick="return confirm('Remove this staff member?')">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No staff found. <a href="{{ url_for('add_staff') }}">Add one now.</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}
