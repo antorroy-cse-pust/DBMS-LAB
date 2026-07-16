@@ -1,0 +1,15 @@
+# Run this in your backend folder to overwrite requirements.txt instantly:
+@"
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-JWT-Extended==4.6.0
+PyMySQL==1.1.0
+bcrypt==4.1.2
+python-dotenv==1.0.0
+reportlab==4.2.5
+Pillow>=10.3.0
+Werkzeug==3.0.1
+cryptography>=41.0.0
+"@ | Out-File -FilePath requirements.txt -Encoding utf8
+
+# Then install:
