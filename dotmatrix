@@ -1,0 +1,82 @@
+CODE SEGMENT
+ASSUME CS:CODE
+
+ORG 1000H
+
+START:
+    MOV AL, 80H
+    OUT 1EH, AL
+
+    ; Turn off red matrix
+    MOV AL, 0FFH
+    OUT 18H, AL
+
+AGAIN:
+
+    ; Column 0
+    MOV AL, 01H
+    OUT 1CH, AL
+    MOV AL, 0C0H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 1
+    MOV AL, 02H
+    OUT 1CH, AL
+    MOV AL, 80H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 2
+    MOV AL, 04H
+    OUT 1CH, AL
+    MOV AL, 37H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 3
+    MOV AL, 08H
+    OUT 1CH, AL
+    MOV AL, 77H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 4
+    MOV AL, 10H
+    OUT 1CH, AL
+    MOV AL, 77H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 5
+    MOV AL, 20H
+    OUT 1CH, AL
+    MOV AL, 37H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 6
+    MOV AL, 40H
+    OUT 1CH, AL
+    MOV AL, 80H
+    OUT 1AH, AL
+    CALL DELAY
+
+    ; Column 7
+    MOV AL, 80H
+    OUT 1CH, AL
+    MOV AL, 0C0H
+    OUT 1AH, AL
+    CALL DELAY
+
+    JMP AGAIN
+
+DELAY:
+    MOV CX, 100
+
+D1:
+    LOOP D1
+    RET
+
+CODE ENDS
+END START
